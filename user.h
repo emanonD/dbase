@@ -1,19 +1,24 @@
 #include <iostream>
 #include <string>
 #include <map>
-using namespace std
+#include <vector>
+
+using namespace std;
 
 class user{
 public:
 	user();
-	user(string name,string cell,string ssn,string address,string dob);
+	user(string fname,string lname,string cel,string sn,string addre,string birth);
 
-	string getName();
+	string getForName();
+	string getLastName();
 	string getCell();
 	string getSsn();
 	string getAddress();
 	string getDob();
-	void setName(string nam);
+	vector<string> keys();
+	void setForName(string fnam);
+	void setLastName(string lnam);
 	void setCell(string cel);	
 	void setSsn(string ss);	
 	void setAddress(string addr);
@@ -22,6 +27,9 @@ public:
 	void dump(std::ostream& os) const;
 
 private:
-	string name,cell,ssn,address,dob;
+	string forname,lastname,cell,ssn,address,dob,email;
+	bool camera;
+	int budget;
+	//vector<car> callHistory;
 
 };
