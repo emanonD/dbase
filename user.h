@@ -25,7 +25,7 @@ public:
 	void setDob(string db);
 	std::string displayString() const;
 	void dump(std::ostream& os) const;
-
+	
 private:
 	string forname,lastname,cell,ssn,address,dob,email;
 	bool camera;

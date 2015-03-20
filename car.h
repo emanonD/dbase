@@ -2,20 +2,27 @@
 #include <string>
 #include <map>
 #include <vector>
-using namespace std
-class car{
-car();
-car(string make,string model,string color,int year,double price);
-void setFeature(vector<bool>);
-void setMake(string make);
-void setModel(string model);
-void setColor(string color);
-void setYear(int year);
-void setPrice(double price);
+using namespace std;
 
+class car{
+public:
+car();
+car(string mak,string mode,string colo,int yea,double pric);
+void setFeature(int featureNum,bool fea);
+void setMake(string mak);
+void setModel(string mode);
+void setColor(string colo);
+void setYear(int yea);
+void setPrice(double pric);
+string getMake();
+string getModel();
+string getColor();
+int getYear();
+double getPrice();
+string displayString();
 private:
 	string make,model,color;
 	vector<bool> feature;
 	int year;
 	double price;
-}
+};
