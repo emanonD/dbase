@@ -20,7 +20,7 @@ user::user(string fname,string lname,string cel,string sn,string addre,string bi
 	lastname=lname;
 	cell=cel;
 	ssn=sn;
-	addre=address;
+	address=addre;
 	dob=birth;
 }
 string user::getForName()
@@ -90,3 +90,4 @@ string user::getCell()
 	{
 		os<<forname+"  "+lastname+"  "+cell+"  "+ssn+"  "+address+"  "+dob;
 	}
+	

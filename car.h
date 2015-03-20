@@ -1,3 +1,6 @@
+#ifndef CAR_H
+#define CAR_H
+
 #include <iostream>
 #include <string>
 #include <map>
@@ -26,3 +29,5 @@ private:
 	int year;
 	double price;
 };
+
+#endif
