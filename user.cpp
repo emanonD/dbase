@@ -53,7 +53,7 @@ user::user(string name,string date,string cell,string other,string address)
 	
 	std::string user::displayString() const
 	{	string toDisplay;
-		 for(int i=0;i<(int)_name.size();i++)
+		 for(int i=0;i<(int)_name.size()-1;i++)
 			toDisplay+=_name[i]+" ";
 			toDisplay+=_cell+" ";
 			toDisplay+=_date+" ";

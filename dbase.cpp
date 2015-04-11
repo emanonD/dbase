@@ -86,7 +86,7 @@ vector<user> dbase::search(vector<string> searchKey)
 			vector<string> tempVec=keybase[searchKey[j]];
 			secVec.push_back(users[tempVec[i]]);
 		}
-		newVec=setInter(newVec,secVec);
+		//newVec=setInter(newVec,secVec);
 	}
    return newVec;
 }
