@@ -10,24 +10,12 @@ using namespace std;
 class car{
 public:
 car();
-car(string mak,string mode,string colo,int yea,double pric);
-void setFeature(int featureNum,bool fea);
-void setMake(string mak);
-void setModel(string mode);
-void setColor(string colo);
-void setYear(int yea);
-void setPrice(double pric);
-string getMake();
-string getModel();
-string getColor();
-int getYear();
-double getPrice();
+car(string make,string exterior,string interior,string year);
 string displayString();
-private:
-	string make,model,color;
-	vector<bool> feature;
-	int year;
-	double price;
+void dump(std::ostream& os) const;
+string _make,_exterior,_interior,_year,_MRSP,_value,_navigation,_rearCamera,_feature;
+private:	
+	
 };
 
 #endif

@@ -8,15 +8,16 @@
 using namespace std;
 int main() {
 	dbase newDb;
-	newDb.parse("database.in");
+	newDb.parse("output.out");
 	vector<string> keys;
 	keys.push_back("Jiang");
 	keys.push_back("Ximing");
+	ofstream ofile("output2.out");
 	vector<user> users=newDb.search(keys);
 	cout<<users[0].displayString();
-	//newDb.dump(ofile);
+	newDb.dump(ofile);
 	
-	//ofile.close();
+	ofile.close();
 	return 0;
 
 }

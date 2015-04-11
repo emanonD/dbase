@@ -4,13 +4,17 @@
 #include <vector>
 #include <algorithm>
 #include "user.h"
+#include "car.h"
 using namespace std;
 
 user::user()
 {
+
 }
 user::user(string name,string date,string cell,string other,string address)
 {	int lastloc=0;
+	_name.clear();
+	_address.clear();
 	for(int i=0;i<(int)name.size();i++)
 	{
 		if (name[i]=='*')
@@ -35,6 +39,7 @@ user::user(string name,string date,string cell,string other,string address)
 	_date=date;
 	_cell=cell;
 	_other=other;
+	haveCar=false;
 	
 }
 

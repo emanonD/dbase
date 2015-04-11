@@ -97,8 +97,9 @@ void dbase::parse(string fileloc)
 {
     ifstream infile(fileloc.c_str());
     string tag,name,date,cell,other,email,address,Referral,Broker,Office,SSN,MonthlyIncome,DOB,Ethnicity,Gender,Occupation;//,pic1,pic2,pic3;
+    string carTag,make,exterior,interior,year,MRSP,value,navigation,rearCamera,feature;
     infile>>tag;
-    if (tag=="Another")
+    while (tag=="Another")
     {
         infile>>name>>date>>cell>>other>>email>>address>>Referral>>Broker>>Office>>SSN>>MonthlyIncome>>DOB>>Ethnicity>>Gender>>Occupation;
         user newUser(name,date,cell,other,address);
@@ -113,7 +114,26 @@ void dbase::parse(string fileloc)
     newUser._Ethnicity=Ethnicity;
     newUser._Gender=Gender;
     newUser._Occupation=Occupation;
-        this->addUser(newUser);
+       
+        infile>>carTag;
+        if (carTag=="Yes")
+         {
+          newUser.haveCar=true;
+         infile>>make>>exterior>>interior>>year>>MRSP>>value>>navigation>>rearCamera>>feature;
+         car newCar(make,exterior,interior,year);
+         newCar._MRSP=MRSP;
+         newCar._value=value;
+         newCar._navigation=navigation;
+         newCar._rearCamera=rearCamera;
+         newCar._feature=feature;
+         newUser._car=newCar;
+        }
+            int numOfCalls;
+            infile>>numOfCalls;
+            newUser.callHistoryNum=numOfCalls;
+            this->addUser(newUser);
+            infile>>tag;
+
     }   
 
 }
@@ -124,6 +144,8 @@ void dbase::dump(ostream& os)
         user newUser=it->second;
         os<<"Another "<<endl;
         newUser.dump(os);
+        if (newUser.haveCar) {os<<"Yes "; newUser._car.dump(os);} else os<<"No ";
+        os<<newUser.callHistoryNum<<" ";
     }
     os<<"end";
 }
