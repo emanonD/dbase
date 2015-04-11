@@ -53,10 +53,12 @@ user::user(string name,string date,string cell,string other,string address)
 	
 	std::string user::displayString() const
 	{	string toDisplay;
+		toDisplay+=_date+" ";
 		 for(int i=0;i<(int)_name.size()-1;i++)
-			toDisplay+=_name[i]+" ";
-			toDisplay+=_cell+" ";
-			toDisplay+=_date+" ";
+			toDisplay+=_name[i]+' ';
+			toDisplay+='\n';
+			toDisplay+=_cell+'\n';
+			
 			toDisplay+=_email;
 
 		return toDisplay;//forname+"  "+lastname+"  "+cell+"  "+ssn+" "+address+"  "+dob;
