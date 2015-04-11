@@ -21,12 +21,13 @@ void addUser(user newUser);
 vector<user> search(vector<string>);
 vector<user> returnAll();
 //void dump(std::ostream& ofile);
-
-
+void parse(string fileloc);
+void dump(ostream& os);
 private:
 map<string,car> cars;
 map<string,user> users;
 map<string,vector<string> > keybase;
+string _fileloc;
 
 };
 

@@ -7,87 +7,47 @@ using namespace std;
 
 user::user()
 {
-forname="forname";
-lastname="lastname";
-cell="cell";
-ssn="ssn";
-address="address";
-dob="dob";
 }
-user::user(string fname,string lname,string cel,string sn,string addre,string birth)
-{
-	forname=fname;
-	lastname=lname;
-	cell=cel;
-	ssn=sn;
-	address=addre;
-	dob=birth;
-}
-string user::getForName()
-{
-return forname;
-}
-string user::getLastName()
-{
-	return lastname;
-}
-string user::getCell()
-{
-	return cell;
-}
-	string user::getSsn()
+user::user(string name,string date,string cell,string other)
+{	int lastloc=0;
+	for(int i=0;i<(int)name.size();i++)
 	{
-		return ssn;
+		if (name[i]=='*')
+		{
+			_name.push_back(name.substr(lastloc,i-lastloc));		
+			lastloc=i+1;
+		}		
 	}
-	string user::getAddress()
-	{
-		return address;
-	}
-	string user::getDob()
-	{
-		return dob;
-	}
+	_name.push_back(name.substr(lastloc,name.size()-lastloc));
+	_date=date;
+	_cell=cell;
+	_other=other;
+	
+}
+
 	vector<string> user::keys()
 	{
 		vector<string> keychain;
-		keychain.push_back(forname);
-		keychain.push_back(lastname);
-		keychain.push_back(cell);
-		keychain.push_back(ssn);
-		keychain.push_back(address);
-		keychain.push_back(dob);
+		keychain.push_back(_cell);
+		keychain.push_back(_SSN);
+		keychain.push_back(_address);
+		keychain.push_back(_DOB);
 		return keychain;
 	}
-	void user::setForName(string fnam)
-	{
-		forname=fnam;
-	}
-	void user::setLastName(string lnam)
-	{
-		lastname=lnam;
-	}
-	void user::setCell(string cel)
-	{
-		cell=cel;
-	}
-	void user::setSsn(string ss)
-	{
-		ssn=ss;
-	}
-	void user::setAddress(string addr)
-	{
-		address=addr;
-	}
-	void user::setDob(string db)
-	{
-		dob=db;
-	}
+	
 	std::string user::displayString() const
 	{
-		return forname+"  "+lastname+"  "+cell+"  "+ssn+" "+address+"  "+dob;
+		return "apple";//forname+"  "+lastname+"  "+cell+"  "+ssn+" "+address+"  "+dob;
 	}
 	void user::dump(std::ostream& os) const
 	{
-		os<<forname+"  "+lastname+"  "+cell+"  "+ssn+"  "+address+"  "+dob;
+		for(int i=0;i<(int)_name.size()-1;i++)
+			os<<_name[i]<<"*";
+		os<<_name[_name.size()-1];
+		os<<" ";
+		os<<_date<<" "<<_cell<<endl<<_other<<" ";
+		os<<_email<<endl<<_address<<endl<<_Referral<<" "<<_Broker<<" ";
+		os<<_Office<<endl<<_SSN<<" "<<_MonthlyIncome<<" "<<_DOB<<endl;
+		os<<_Ethnicity<<" "<<_Gender<<" "<<_Occupation<<endl;
 	}
 	
