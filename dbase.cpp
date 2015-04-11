@@ -41,6 +41,20 @@ void dbase::addUser(user newUser)
         }
     }
 }
+vector<user> dbase::setInter(vector<user>& s1, vector<user>& s2)
+{
+  vector<user> result;
+  bool contain=false;
+  for(int i=0;i<(int)s1.size();i++)
+  {
+    contain=false;
+    for (int j=0;j<(int)s2.size();j++)
+        if (s1[i]._cell==s2[i]._cell)
+            contain=true;
+    if(contain) result.push_back(s1[i]);
+  }
+  return result;
+}
 vector<user> dbase::returnAll()
 {
 	vector<user> retu;
@@ -72,7 +86,7 @@ vector<user> dbase::search(vector<string> searchKey)
 			vector<string> tempVec=keybase[searchKey[j]];
 			secVec.push_back(users[tempVec[i]]);
 		}
-		//newVec=setIntersection(newVec,secVec);
+		newVec=setInter(newVec,secVec);
 	}
    return newVec;
 }
@@ -84,9 +98,9 @@ void dbase::parse(string fileloc)
     if (tag=="Another")
     {
         infile>>name>>date>>cell>>other>>email>>address>>Referral>>Broker>>Office>>SSN>>MonthlyIncome>>DOB>>Ethnicity>>Gender>>Occupation;
-        user newUser(name,date,cell,other);
+        user newUser(name,date,cell,other,address);
         newUser._email=email;
-    newUser._address=address;
+    //newUser._address=address;
     newUser._Referral=Referral;
     newUser._Broker=Broker;
     newUser._Office=Office;
