@@ -4,6 +4,7 @@
 #include <map>
 #include <fstream>
 #include <cstdlib>
+#include <algorithm>
 #include "dbase.h"
 #include "user.h"
 
@@ -67,6 +68,8 @@ vector<user> dbase::returnAll()
 }
 vector<user> dbase::search(vector<string> searchKey)
 {
+    for (int i=0;i<(int)searchKey.size();i++)
+            transform(searchKey[i].begin(), searchKey[i].end(), searchKey[i].begin(), ::tolower);
     vector<user> newVec;
     if (keybase.count(searchKey[0])==0)
     return newVec;
@@ -86,7 +89,7 @@ vector<user> dbase::search(vector<string> searchKey)
 			vector<string> tempVec=keybase[searchKey[j]];
 			secVec.push_back(users[tempVec[i]]);
 		}
-		//newVec=setInter(newVec,secVec);
+		newVec=setInter(newVec,secVec);
 	}
    return newVec;
 }

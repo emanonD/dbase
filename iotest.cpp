@@ -11,6 +11,7 @@ int main() {
 	newDb.parse("database.in");
 	vector<string> keys;
 	keys.push_back("Jiang");
+	keys.push_back("Ximing");
 	vector<user> users=newDb.search(keys);
 	cout<<users[0].displayString();
 	//newDb.dump(ofile);

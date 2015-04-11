@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <algorithm>
 #include "user.h"
 using namespace std;
 
@@ -48,6 +49,8 @@ user::user(string name,string date,string cell,string other,string address)
 		keychain.push_back(_SSN);
 		//keychain.push_back(_address);
 		keychain.push_back(_DOB);
+		for (int i=0;i<(int)keychain.size();i++)
+			transform(keychain[i].begin(), keychain[i].end(), keychain[i].begin(), ::tolower);
 		return keychain;
 	}
 	
@@ -59,7 +62,7 @@ user::user(string name,string date,string cell,string other,string address)
 			toDisplay+='\n';
 			toDisplay+=_cell+'\n';
 			
-			toDisplay+=_email;
+			toDisplay+=_email+'\n';
 
 		return toDisplay;//forname+"  "+lastname+"  "+cell+"  "+ssn+" "+address+"  "+dob;
 	}
