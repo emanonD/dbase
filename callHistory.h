@@ -1,4 +1,5 @@
-
+#ifndef CALLHISTORY_H
+#define CALLHISTORY_H
 
 #include <iostream>
 #include <string>
@@ -19,3 +20,4 @@ private:
 };
 
 
+#endif
