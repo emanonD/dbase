@@ -7,6 +7,7 @@
 #include <algorithm>
 #include "dbase.h"
 #include "user.h"
+//#include "callHistory.h"
 
 using namespace std;
 
@@ -131,6 +132,21 @@ void dbase::parse(string fileloc)
             int numOfCalls;
             infile>>numOfCalls;
             newUser.callHistoryNum=numOfCalls;
+            string callDate,method,comment;
+            for(int i=0;i<numOfCalls;i++)
+            {
+                infile>>callDate>>method;
+                infile>>make>>exterior>>interior>>year>>MRSP>>value>>navigation>>rearCamera>>feature;
+            car newCar(make,exterior,interior,year);
+             newCar._MRSP=MRSP;
+            newCar._value=value;
+            newCar._navigation=navigation;
+             newCar._rearCamera=rearCamera;
+            newCar._feature=feature;
+                infile>>comment;
+                callHistory newHistory(callDate,newCar,method,comment);
+                newUser._callHistory.push_back(newHistory);
+            }
             this->addUser(newUser);
             infile>>tag;
 
@@ -146,6 +162,8 @@ void dbase::dump(ostream& os)
         newUser.dump(os);
         if (newUser.haveCar) {os<<"Yes "; newUser._car.dump(os);} else os<<"No ";
         os<<newUser.callHistoryNum<<" ";
+        for(int i=0;i<newUser.callHistoryNum;i++)
+            newUser._callHistory[i].dump(os);
     }
     os<<"end";
 }

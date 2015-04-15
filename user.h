@@ -6,6 +6,7 @@
 #include <map>
 #include <vector>
 #include "car.h"
+#include "callHistory.h"
 using namespace std;
 
 class user{
@@ -19,9 +20,11 @@ public:
 	bool haveCar;
 	car _car;
 	int callHistoryNum;
-private:
 	vector<string> _name;
 	vector<string> _address;
+	vector<callHistory> _callHistory;
+private:
+	
 	//vector<car> callHistory;
 
 };
