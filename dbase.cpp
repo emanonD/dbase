@@ -27,7 +27,9 @@ void dbase::addUser(user newUser)
     {   cch = 'a' + rand()%26;
         userKey+=cch;
     }
+    newUser._key=userKey;
     users[userKey]=newUser;
+
     vector<string> keys=newUser.keys();
 
     for (int i=0; i<(int)keys.size(); i++)
@@ -42,6 +44,10 @@ void dbase::addUser(user newUser)
             keybase[keys[i]].push_back(userKey);
         }
     }
+}
+void dbase::replaceUser(user newUser)
+{
+    keybase[newUser._key]=newUser;
 }
 vector<user> dbase::setInter(vector<user>& s1, vector<user>& s2)
 {

@@ -18,6 +18,7 @@ public:
 	void dump(std::ostream& os) const;
 	string _date,_cell,_other,_email,_Referral,_Broker,_Office,_SSN,_MonthlyIncome,_DOB,_Ethnicity,_Gender,_Occupation;
 	bool haveCar;
+	string _key;
 	car _car;
 	int callHistoryNum;
 	vector<string> _name;

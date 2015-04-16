@@ -40,6 +40,7 @@ user::user(string name,string date,string cell,string other,string address)
 	_cell=cell;
 	_other=other;
 	haveCar=false;
+	_callHistoryNum=0;
 	
 }
 
