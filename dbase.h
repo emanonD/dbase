@@ -25,9 +25,10 @@ void parse(string fileloc);
 void dump(ostream& os);
 vector<user> setInter(vector<user>& s1, vector<user>& s2);
 void replaceUser(user newUser);
+map<string,user> users;
 private:
 //map<string,car> cars;
-map<string,user> users;
+
 map<string,vector<string> > keybase;
 string _fileloc;
 
