@@ -138,7 +138,7 @@ void dbase::parse(string fileloc)
         }
             int numOfCalls;
             infile>>numOfCalls;
-            newUser.callHistoryNum=numOfCalls;
+            newUser._callHistoryNum=numOfCalls;
             string callDate,method,comment;
             for(int i=0;i<numOfCalls;i++)
             {
@@ -168,8 +168,8 @@ void dbase::dump(ostream& os)
         os<<"Another "<<endl;
         newUser.dump(os);
         if (newUser.haveCar) {os<<"Yes "; newUser._car.dump(os);} else os<<"No ";
-        os<<newUser.callHistoryNum<<" ";
-        for(int i=0;i<newUser.callHistoryNum;i++)
+        os<<newUser._callHistoryNum<<" ";
+        for(int i=0;i<newUser._callHistoryNum;i++)
             newUser._callHistory[i].dump(os);
     }
     os<<"end";
