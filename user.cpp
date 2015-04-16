@@ -65,7 +65,7 @@ user::user(string name,string date,string cell,string other,string address)
 		toDisplay+=_date+" ";
 		 for(int i=0;i<(int)_name.size();i++)
 			toDisplay+=_name[i]+' ';
-			toDisplay+='  ';
+			toDisplay+=' ';
 			toDisplay+=_cell+' ';
 			
 			toDisplay+=_email+' ';
