@@ -10,8 +10,8 @@ int main() {
 	dbase newDb;
 	newDb.parse("output.out");
 	vector<string> keys;
-	keys.push_back("Jiang");
-	keys.push_back("Ximing");
+	//keys.push_back("Jiang");
+	keys.push_back("wei");
 	ofstream ofile("output1.out");
 	vector<user> users=newDb.search(keys);
 	cout<<users[0].displayString();

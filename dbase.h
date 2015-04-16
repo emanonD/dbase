@@ -24,6 +24,7 @@ vector<user> returnAll();
 void parse(string fileloc);
 void dump(ostream& os);
 vector<user> setInter(vector<user>& s1, vector<user>& s2);
+void replaceUser(user newUser);
 private:
 //map<string,car> cars;
 map<string,user> users;

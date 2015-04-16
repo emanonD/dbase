@@ -47,7 +47,7 @@ void dbase::addUser(user newUser)
 }
 void dbase::replaceUser(user newUser)
 {
-    keybase[newUser._key]=newUser;
+    users[newUser._key]=newUser;
 }
 vector<user> dbase::setInter(vector<user>& s1, vector<user>& s2)
 {
@@ -103,12 +103,12 @@ vector<user> dbase::search(vector<string> searchKey)
 void dbase::parse(string fileloc)
 {
     ifstream infile(fileloc.c_str());
-    string tag,name,date,cell,other,email,address,Referral,Broker,Office,SSN,MonthlyIncome,DOB,Ethnicity,Gender,Occupation;//,pic1,pic2,pic3;
+    string tag,name,date,cell,other,email,address,Referral,Broker,Office,SSN,MonthlyIncome,DOB,Ethnicity,Gender,Occupation,callBackDate;//,pic1,pic2,pic3;
     string carTag,make,exterior,interior,year,MRSP,value,navigation,rearCamera,feature;
     infile>>tag;
     while (tag=="Another")
     {
-        infile>>name>>date>>cell>>other>>email>>address>>Referral>>Broker>>Office>>SSN>>MonthlyIncome>>DOB>>Ethnicity>>Gender>>Occupation;
+        infile>>name>>date>>cell>>other>>email>>address>>Referral>>Broker>>Office>>SSN>>MonthlyIncome>>DOB>>Ethnicity>>Gender>>Occupation>>callBackDate;
         user newUser(name,date,cell,other,address);
         newUser._email=email;
     //newUser._address=address;
@@ -121,6 +121,7 @@ void dbase::parse(string fileloc)
     newUser._Ethnicity=Ethnicity;
     newUser._Gender=Gender;
     newUser._Occupation=Occupation;
+    newUser._callBackDate=callBackDate;
        
         infile>>carTag;
         if (carTag=="Yes")

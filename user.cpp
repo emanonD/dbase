@@ -86,6 +86,6 @@ user::user(string name,string date,string cell,string other,string address)
 		os<<" ";
 		os<<endl<<_Referral<<" "<<_Broker<<" ";
 		os<<_Office<<endl<<_SSN<<" "<<_MonthlyIncome<<" "<<_DOB<<endl;
-		os<<_Ethnicity<<" "<<_Gender<<" "<<_Occupation<<endl;
+		os<<_Ethnicity<<" "<<_Gender<<" "<<_Occupation<<" "<<_callBackDate<<endl;
 	}
 	
