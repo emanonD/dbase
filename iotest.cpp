@@ -12,7 +12,7 @@ int main() {
 	vector<string> keys;
 	keys.push_back("Jiang");
 	keys.push_back("Ximing");
-	ofstream ofile("output2.out");
+	ofstream ofile("output1.out");
 	vector<user> users=newDb.search(keys);
 	cout<<users[0].displayString();
 	newDb.dump(ofile);
