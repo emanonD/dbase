@@ -46,7 +46,22 @@ void dbase::addUser(user newUser)
     }
 }
 void dbase::replaceUser(user newUser)
-{
+{   
+    string userKey=newUser._key;
+    vector<string> keys=newUser.keys();
+
+    for (int i=0; i<(int)keys.size(); i++)
+    {
+        if (keybase.count(keys[i])==0)
+        {
+            vector<string> newVec;
+            newVec.push_back(userKey);
+            keybase[keys[i]]=newVec;
+        }
+        else {
+            keybase[keys[i]].push_back(userKey);
+        }
+    }
     users[newUser._key]=newUser;
 }
 vector<user> dbase::setInter(vector<user>& s1, vector<user>& s2)
@@ -108,7 +123,7 @@ void dbase::parse(string fileloc)
     infile>>tag;
     while (tag=="Another")
     {
-        infile>>name>>date>>cell>>other>>email>>address>>Referral>>Broker>>Office>>SSN>>MonthlyIncome>>DOB>>Ethnicity>>Gender>>Occupation;//>>callBackDate;
+        infile>>name>>date>>cell>>other>>email>>address>>Referral>>Broker>>Office>>SSN>>MonthlyIncome>>DOB>>Ethnicity>>Gender>>Occupation>>callBackDate;
         user newUser(name,date,cell,other,address);
         newUser._email=email;
     //newUser._address=address;

@@ -15,11 +15,11 @@ user::user(string name,string date,string cell,string other,string address)
 {	int lastloc=0;
 	_name.clear();
 	_address.clear();
-	for(int i=0;i<(int)name.size();i++)
-	{
-		if (name[i]=' ')
-			name=name.substr(i);
-	}
+	//for(int i=0;i<(int)name.size();i++)
+	
+		if (name[0]==' ')
+			name=name.substr(1);
+	
 	for(int i=0;i<(int)name.size();i++)
 	{
 		if (name[i]=='*')
