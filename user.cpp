@@ -17,6 +17,11 @@ user::user(string name,string date,string cell,string other,string address)
 	_address.clear();
 	for(int i=0;i<(int)name.size();i++)
 	{
+		if (name[i]=' ')
+			name=name.substr(i);
+	}
+	for(int i=0;i<(int)name.size();i++)
+	{
 		if (name[i]=='*')
 		{
 			_name.push_back(name.substr(lastloc,i-lastloc));		
@@ -78,14 +83,14 @@ user::user(string name,string date,string cell,string other,string address)
 			os<<_name[i]<<"*";
 		os<<_name[_name.size()-1];
 		os<<" ";
-		os<<_date<<" "<<_cell<<endl<<_other<<" ";
-		os<<_email<<endl;
+		os<<_date<<" "<<_cell<<" "<<_other<<" ";
+		os<<_email<<" ";
 		for(int i=0;i<(int)_address.size()-1;i++)
 		os<<_address[i]<<"*";
 		os<<_address[_address.size()-1];
 		os<<" ";
 		os<<endl<<_Referral<<" "<<_Broker<<" ";
-		os<<_Office<<endl<<_SSN<<" "<<_MonthlyIncome<<" "<<_DOB<<endl;
-		os<<_Ethnicity<<" "<<_Gender<<" "<<_Occupation<<" "<<_callBackDate<<endl;
+		os<<_Office<<endl<<_SSN<<" "<<_MonthlyIncome<<" "<<_DOB<<" ";
+		os<<_Ethnicity<<" "<<_Gender<<" "<<_Occupation<<" "<<_callBackDate<<" ";
 	}
 	

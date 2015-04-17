@@ -108,7 +108,7 @@ void dbase::parse(string fileloc)
     infile>>tag;
     while (tag=="Another")
     {
-        infile>>name>>date>>cell>>other>>email>>address>>Referral>>Broker>>Office>>SSN>>MonthlyIncome>>DOB>>Ethnicity>>Gender>>Occupation>>callBackDate;
+        infile>>name>>date>>cell>>other>>email>>address>>Referral>>Broker>>Office>>SSN>>MonthlyIncome>>DOB>>Ethnicity>>Gender>>Occupation;//>>callBackDate;
         user newUser(name,date,cell,other,address);
         newUser._email=email;
     //newUser._address=address;
