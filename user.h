@@ -16,6 +16,7 @@ public:
 	vector<string> keys();
 	std::string displayString() const;
 	void dump(std::ostream& os) const;
+	void generateCallHistory(string date,car newCar,string method,string comment);
 	string _date,_cell,_other,_email,_Referral,_Broker,_Office,_SSN,_MonthlyIncome,_DOB,_Ethnicity,_Gender,_Occupation;
 	string _callBackDate;
 	bool haveCar;

@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "user.h"
 #include "car.h"
+#include "callHistory.h"
 using namespace std;
 
 user::user()
@@ -64,12 +65,19 @@ user::user(string name,string date,string cell,string other,string address)
 			transform(keychain[i].begin(), keychain[i].end(), keychain[i].begin(), ::tolower);
 		return keychain;
 	}
-	
+	void user::generateCallHistory(string date,car newCar,string method,string comment)
+	{
+		callHistory newCallHistory(date,newCar,method,comment);
+		_callHistory.push_back(newCallHistory);
+		_callHistoryNum=_callHistory.size();
+	}
 	std::string user::displayString() const
 	{	string toDisplay;
 		toDisplay+=_date+" ";
-		 for(int i=0;i<(int)_name.size();i++)
-			toDisplay+=_name[i]+' ';
+			for(int i=0;i<(int)_name.size()-1;i++)
+			toDisplay+=_name[i]+" ";
+
+		toDisplay+=_name[_name.size()-1];
 			toDisplay+=' ';
 			toDisplay+=_cell+' ';
 			
