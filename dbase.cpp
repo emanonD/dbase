@@ -169,6 +169,21 @@ void dbase::parse(string fileloc)
                 callHistory newHistory(callDate,newCar,method,comment);
                 newUser._callHistory.push_back(newHistory);
             }
+            int imagesNum,filesNum;
+            infile>>imagesNum;
+            for(int i=0;i<imagesNum;i++)
+               {
+                string newfile;
+                infile>>newfile;
+                newUser._files.push_back(newfile);
+               } 
+                infile>>filesNum;
+            for(int i=0;i<filesNum;i++)
+               {
+                string newfile;
+                infile>>newfile;
+                newUser._images.push_back(newfile);
+               } 
             this->addUser(newUser);
             infile>>tag;
 
@@ -182,10 +197,29 @@ void dbase::dump(ostream& os)
         user newUser=it->second;
         os<<"Another "<<endl;
         newUser.dump(os);
+        os<<endl;
         if (newUser.haveCar) {os<<"Yes "; newUser._car.dump(os);} else os<<"No ";
-        os<<newUser._callHistoryNum<<" ";
+        os<<newUser._callHistoryNum<<endl;
         for(int i=0;i<newUser._callHistoryNum;i++)
             newUser._callHistory[i].dump(os);
+        os<<newUser._images.size()<<endl;
+        for(int i=0;i<(int)newUser._images.size();i++)
+            os<<newUser._images[i]<<endl;
+        os<<newUser._files.size()<<endl;
+        for(int i=0;i<(int)newUser._files.size();i++)
+            os<<newUser._files[i]<<endl;
     }
     os<<"end";
+}
+vector<user> dbase::findDate(string Qdate)
+{
+    vector<user> toCall;
+    for(map<string,user>::iterator it=users.begin();it!=users.end();++it)
+    {
+        user newUser=it->second;
+        if (newUser._callBackDate==Qdate)
+            toCall.push_back(newUser);
+
+    }
+    return toCall;
 }

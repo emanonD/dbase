@@ -85,6 +85,32 @@ user::user(string name,string date,string cell,string other,string address)
 
 		return toDisplay;//forname+"  "+lastname+"  "+cell+"  "+ssn+" "+address+"  "+dob;
 	}
+	void user::check()
+	{
+		cout<<"checking for empty";
+		if (_name[0]=="") _name[0]=("name");
+		if (_address[0]=="")  _address[0]=("address");
+		//if (_date=="") _date="date";
+		cout<<_cell;
+		if (_cell=="") _cell="Cell";
+		if (_other=="") _other="Cell2";
+		if (_email=="") _email="Email";
+		if (_Referral=="") _Referral="Referral";
+		if (_Broker=="") _Broker="Broker";
+		if (_SSN=="") _SSN="SSN";
+		if (_Office=="") _Office="Office";
+		if (_MonthlyIncome=="") _MonthlyIncome="MonthlyIncome";
+		if (_DOB=="") _DOB="DoB";
+		if (_Ethnicity=="") _Ethnicity="Ethnicity";
+		if (_Gender=="") _Gender="Gender";
+		if (_Occupation=="") _Occupation="Occupation";
+		if (haveCar)
+			_car.check();
+		for (int i=0;i<(int)_callHistory.size();i++)
+			if (_callHistory[i]._comment[0]=="")
+				_callHistory[i]._comment[0]="Comment";
+		//,_cell,_other,_email,_Referral,_Broker,_Office,_SSN,_MonthlyIncome,_DOB,_Ethnicity,_Gender,_Occupation;
+	}
 	void user::dump(std::ostream& os) const
 	{
 		for(int i=0;i<(int)_name.size()-1;i++)
@@ -97,8 +123,8 @@ user::user(string name,string date,string cell,string other,string address)
 		os<<_address[i]<<"*";
 		os<<_address[_address.size()-1];
 		os<<" ";
-		os<<endl<<_Referral<<" "<<_Broker<<" ";
-		os<<_Office<<endl<<_SSN<<" "<<_MonthlyIncome<<" "<<_DOB<<" ";
+		os<<" "<<_Referral<<" "<<_Broker<<" ";
+		os<<_Office<<" "<<_SSN<<" "<<_MonthlyIncome<<" "<<_DOB<<" ";
 		os<<_Ethnicity<<" "<<_Gender<<" "<<_Occupation<<" "<<_callBackDate<<" ";
 	}
 	

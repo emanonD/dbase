@@ -27,6 +27,7 @@ void dump(ostream& os);
 vector<user> setInter(vector<user>& s1, vector<user>& s2);
 void replaceUser(user newUser);
 map<string,user> users;
+vector<user> findDate(string Qdate);
 private:
 //map<string,car> cars;
 

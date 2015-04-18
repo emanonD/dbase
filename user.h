@@ -19,6 +19,7 @@ public:
 	void generateCallHistory(string date,car newCar,string method,string comment);
 	string _date,_cell,_other,_email,_Referral,_Broker,_Office,_SSN,_MonthlyIncome,_DOB,_Ethnicity,_Gender,_Occupation;
 	string _callBackDate;
+	void check();
 	bool haveCar;
 	string _key;
 	car _car;
@@ -26,6 +27,8 @@ public:
 	vector<string> _name;
 	vector<string> _address;
 	vector<callHistory> _callHistory;
+	vector<string> _images;
+	vector<string> _files;
 private:
 	
 	//vector<car> callHistory;

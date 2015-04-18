@@ -11,7 +11,7 @@ public:
 callHistory();
 callHistory(string date,car newCar,string method,string comment);
 string displayString();
-void dump(std::ostream& os) const;
+void dump(std::ostream& os) ;
 car _car;
 string _date,_method;
 vector<string> _comment;
