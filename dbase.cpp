@@ -217,6 +217,8 @@ vector<user> dbase::findDate(string Qdate)
     for(map<string,user>::iterator it=users.begin();it!=users.end();++it)
     {
         user newUser=it->second;
+        cout<<Qdate<<endl;
+        cout<<newUser._callBackDate;
         if (newUser._callBackDate==Qdate)
             toCall.push_back(newUser);
 
