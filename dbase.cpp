@@ -89,10 +89,11 @@ vector<user> dbase::returnAll()
 	return retu;
 }
 vector<user> dbase::search(vector<string> searchKey)
-{
+{  
+vector<user> newVec; if (searchKey.size()!=0){
     for (int i=0;i<(int)searchKey.size();i++)
             transform(searchKey[i].begin(), searchKey[i].end(), searchKey[i].begin(), ::tolower);
-    vector<user> newVec;
+    
     if (keybase.count(searchKey[0])==0)
     return newVec;
     else for( int  i=0;i<(int)keybase[searchKey[0]].size();i++)
@@ -113,6 +114,13 @@ vector<user> dbase::search(vector<string> searchKey)
 		}
 		newVec=setInter(newVec,secVec);
 	}
+}
+   // if (searchKey.size()==0)
+     else   for(map<string,user>::iterator it=users.begin();it!=users.end();++it)
+    {
+        user newUser=it->second;
+        newVec.push_back(newUser);
+    }
    return newVec;
 }
 void dbase::parse(string fileloc)

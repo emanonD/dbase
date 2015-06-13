@@ -81,7 +81,7 @@ user::user(string name,string date,string cell,string other,string address)
 			toDisplay+=' ';
 			toDisplay+=_date+' ';
 			
-			toDisplay+=_email+' ';
+			toDisplay+=_car._make+' ';
 			//toDisplay+=(int)_callHistory.size();
 
 		return toDisplay;//forname+"  "+lastname+"  "+cell+"  "+ssn+" "+address+"  "+dob;
