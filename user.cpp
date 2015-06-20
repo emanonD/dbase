@@ -98,11 +98,11 @@ user::user(string name,string date,string cell)
 		}
 		else if(_lease==1)
 		{
-			os<<_down<<" "<<_term<<" "<<_miles;
+			os<<_down<<" "<<_term<<" "<<_miles<<" ";
 		}
 		else if(_lease==0)
 		{
-			os<<_dotd;
+			os<<_dotd<<" ";
 		}
-		os<<_callBackDate;
+		os<<_callBackDate<<" ";
 	}

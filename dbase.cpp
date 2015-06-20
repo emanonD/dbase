@@ -142,7 +142,8 @@ void dbase::parse(string fileloc)
     newUser._model=model;
     infile>>newTag>>leaseTag;
     if (!newTag)
-    {
+    {   newUser._new=newTag;
+        newUser._lease=leaseTag;
         infile>>exterior>>interior>>year>>msrp>>options>>price;
         newUser._exterior=exterior;
         newUser._interior=interior;
@@ -153,16 +154,22 @@ void dbase::parse(string fileloc)
     }
     else if(!leaseTag)
     {
+        newUser._new=newTag;
+        newUser._lease=leaseTag;
         infile>>dotd;
         newUser._dotd=dotd;
     }
     else if(leaseTag)
     {
+        newUser._new=newTag;
+        newUser._lease=leaseTag;
         infile>>down>>term>>miles;
         newUser._down=down;
         newUser._term=term;
         newUser._miles=miles;
     }
+    infile>>callBackDate;
+    newUser._callBackDate=callBackDate;
     this->addUser(newUser);
     infile>>tag;
 }
