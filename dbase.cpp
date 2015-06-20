@@ -21,6 +21,7 @@ _fileloc=fileloc;
 }
 void dbase::addUser(user newUser)
 {
+    newUser.check();
     char cch ;
     string userKey;
     for(int i=0; i<8; i++)
@@ -126,77 +127,45 @@ vector<user> newVec; if (searchKey.size()!=0){
 void dbase::parse(string fileloc)
 {
     ifstream infile(fileloc.c_str());
-    string tag,name,date,cell,other,email,address,Referral,Broker,Office,SSN,MonthlyIncome,DOB,Ethnicity,Gender,Occupation,callBackDate;//,pic1,pic2,pic3;
-    string carTag,make,exterior,interior,year,MRSP,value,navigation,rearCamera,feature;
+    string tag,name,date,cell,email,address,callBackDate,make,model;//,pic1,pic2,pic3;
+    int newTag,leaseTag;
+    string exterior,interior,year,msrp,options,price;
+    int down,term,miles,dotd;
     infile>>tag;
     while (tag=="Another")
     {
-        infile>>name>>date>>cell>>other>>email>>address>>Referral>>Broker>>Office>>SSN>>MonthlyIncome>>DOB>>Ethnicity>>Gender>>Occupation>>callBackDate;
-        user newUser(name,date,cell,other,address);
+        infile>>name>>date>>cell>>email>>make>>model;
+        user newUser(name,date,cell);
         newUser._email=email;
     //newUser._address=address;
-    newUser._Referral=Referral;
-    newUser._Broker=Broker;
-    newUser._Office=Office;
-    newUser._SSN=SSN;
-    newUser._MonthlyIncome=MonthlyIncome;
-    newUser._DOB=DOB;
-    newUser._Ethnicity=Ethnicity;
-    newUser._Gender=Gender;
-    newUser._Occupation=Occupation;
-    newUser._callBackDate=callBackDate;
-       
-        infile>>carTag;
-        if (carTag=="Yes")
-         {
-          newUser.haveCar=true;
-         infile>>make>>exterior>>interior>>year>>MRSP>>value>>navigation>>rearCamera>>feature;
-         car newCar(make,exterior,interior,year);
-         newCar._MRSP=MRSP;
-         newCar._value=value;
-         newCar._navigation=navigation;
-         newCar._rearCamera=rearCamera;
-         newCar._feature=feature;
-         newUser._car=newCar;
-        }
-            int numOfCalls;
-            infile>>numOfCalls;
-            newUser._callHistoryNum=numOfCalls;
-            string callDate,method,comment;
-            for(int i=0;i<numOfCalls;i++)
-            {
-                infile>>callDate>>method;
-                infile>>make>>exterior>>interior>>year>>MRSP>>value>>navigation>>rearCamera>>feature;
-            car newCar(make,exterior,interior,year);
-             newCar._MRSP=MRSP;
-            newCar._value=value;
-            newCar._navigation=navigation;
-             newCar._rearCamera=rearCamera;
-            newCar._feature=feature;
-                infile>>comment;
-                callHistory newHistory(callDate,newCar,method,comment);
-                newUser._callHistory.push_back(newHistory);
-            }
-            int imagesNum,filesNum;
-            infile>>imagesNum;
-            for(int i=0;i<imagesNum;i++)
-               {
-                string newfile;
-                infile>>newfile;
-                newUser._files.push_back(newfile);
-               } 
-                infile>>filesNum;
-            for(int i=0;i<filesNum;i++)
-               {
-                string newfile;
-                infile>>newfile;
-                newUser._images.push_back(newfile);
-               } 
-            this->addUser(newUser);
-            infile>>tag;
-
-    }   
-
+    newUser._make=make;
+    newUser._model=model;
+    infile>>newTag>>leaseTag;
+    if (!newTag)
+    {
+        infile>>exterior>>interior>>year>>msrp>>options>>price;
+        newUser._exterior=exterior;
+        newUser._interior=interior;
+        newUser._year=year;
+        newUser._msrp=msrp;
+        newUser._options=options;
+        newUser._price=price;
+    }
+    else if(!leaseTag)
+    {
+        infile>>dotd;
+        newUser._dotd=dotd;
+    }
+    else if(leaseTag)
+    {
+        infile>>down>>term>>miles;
+        newUser._down=down;
+        newUser._term=term;
+        newUser._miles=miles;
+    }
+    this->addUser(newUser);
+    infile>>tag;
+}
 }
 void dbase::dump(ostream& os)
 {
@@ -206,16 +175,6 @@ void dbase::dump(ostream& os)
         os<<"Another "<<endl;
         newUser.dump(os);
         os<<endl;
-        if (newUser.haveCar) {os<<"Yes "; newUser._car.dump(os);} else os<<"No ";
-        os<<newUser._callHistoryNum<<endl;
-        for(int i=0;i<newUser._callHistoryNum;i++)
-            newUser._callHistory[i].dump(os);
-        os<<newUser._images.size()<<endl;
-        for(int i=0;i<(int)newUser._images.size();i++)
-            os<<newUser._images[i]<<endl;
-        os<<newUser._files.size()<<endl;
-        for(int i=0;i<(int)newUser._files.size();i++)
-            os<<newUser._files[i]<<endl;
     }
     os<<"end";
 }
