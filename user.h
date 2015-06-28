@@ -17,7 +17,7 @@ public:
 	std::string displayString() const;
 	void dump(std::ostream& os) const;
 	//void generateCallHistory(string date,car newCar,string method,string comment);
-	string _date,_cell,_email,_make,_model,_exterior,_interior,_year,_msrp,_options,_price;
+	string _date,_cell,_email,_make,_model,_exterior,_interior,_year,_msrp,_options,_price,_orderNumber;
 	int _down,_term,_miles,_dotd;
 	bool _new;
 	bool _lease;

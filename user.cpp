@@ -40,6 +40,7 @@ user::user(string name,string date,string cell)
 		for(int i=0;i<(int)_name.size();i++)
 		keychain.push_back(_name[i]);
 		keychain.push_back(_cell);
+		keychain.push_back(_orderNumber);
 		for (int i=0;i<(int)keychain.size();i++)
 			transform(keychain[i].begin(), keychain[i].end(), keychain[i].begin(), ::tolower);
 		return keychain;
@@ -69,7 +70,7 @@ user::user(string name,string date,string cell)
 	{
 		cout<<"checking for empty";
 		if (_name[0]=="") _name[0]=("name");
-		
+		if(_orderNumber=="") _orderNumber="OrderNumber";
 		if (_cell=="") _cell="Cell";
 		
 		if (_email=="") _email="Email";
@@ -81,6 +82,7 @@ user::user(string name,string date,string cell)
 		if (_msrp=="") _msrp="msrp";
 		if (_options=="") _options="options";
 		if (_price=="") _price="price";
+		if (_orderNumber=="") _orderNumber="OrderNumber";
 			
 	}
 	void user::dump(std::ostream& os) const
@@ -104,5 +106,6 @@ user::user(string name,string date,string cell)
 		{
 			os<<_dotd<<" ";
 		}
+		os<<_orderNumber<<" ";
 		os<<_callBackDate<<" ";
 	}

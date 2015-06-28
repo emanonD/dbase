@@ -127,13 +127,14 @@ vector<user> newVec; if (searchKey.size()!=0){
 void dbase::parse(string fileloc)
 {
     ifstream infile(fileloc.c_str());
-    string tag,name,date,cell,email,address,callBackDate,make,model;//,pic1,pic2,pic3;
+    string tag,name,date,cell,email,address,callBackDate,make,model,orderNumber;//,pic1,pic2,pic3;
     int newTag,leaseTag;
     string exterior,interior,year,msrp,options,price;
     int down,term,miles,dotd;
     infile>>tag;
     while (tag=="Another")
     {
+        tag=="0";
         infile>>name>>date>>cell>>email>>make>>model;
         user newUser(name,date,cell);
         newUser._email=email;
@@ -168,11 +169,16 @@ void dbase::parse(string fileloc)
         newUser._term=term;
         newUser._miles=miles;
     }
+    infile>>orderNumber;
+    newUser._orderNumber=orderNumber;
     infile>>callBackDate;
     newUser._callBackDate=callBackDate;
     this->addUser(newUser);
     infile>>tag;
-}
+    if (tag!="Another")
+        while (tag!="end")
+            infile>>tag;
+    }
 }
 void dbase::dump(ostream& os)
 {
