@@ -26,6 +26,7 @@ void parse(string fileloc);
 void dump(ostream& os);
 vector<user> setInter(vector<user>& s1, vector<user>& s2);
 void replaceUser(user newUser);
+vector<string> producer(string s);
 map<string,user> users;
 vector<user> findDate(string Qdate);
 private:

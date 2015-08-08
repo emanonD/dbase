@@ -60,8 +60,8 @@ user::user(string name,string date,string cell)
 		toDisplay+=_name[_name.size()-1];
 			toDisplay+=' ';
 			toDisplay+=_date+' ';
-		
-			toDisplay+=_make+' ';
+		for(int i=0;i<(int)_make.size()-1;i++)
+			toDisplay+=_make[i]+" ";
 			//toDisplay+=(int)_callHistory.size();
 
 		return toDisplay;//forname+"  "+lastname+"  "+cell+"  "+ssn+" "+address+"  "+dob;
@@ -69,13 +69,13 @@ user::user(string name,string date,string cell)
 	void user::check()
 	{
 		cout<<"checking for empty";
-		if (_name[0]=="") _name[0]=("name");
+		if ((_name[0]=="")&&(_name.size()<=1)) _name[0]=("name");
 		if(_orderNumber=="") _orderNumber="OrderNumber";
 		if (_cell=="") _cell="Cell";
 		
 		if (_email=="") _email="Email";
-		if (_make=="") _make="make";
-		if (_model=="") _model="model";
+		if ((_make[0]=="")&&(_make.size()<=1)) _make[0]=("make");
+		if ((_model[0]=="")&&(_model.size()<=1)) _model[0]=("model");
 		if (_exterior=="") _exterior="exterior";
 		if (_interior=="") _interior="interior";
 		if (_year=="") _year="year";
@@ -92,7 +92,15 @@ user::user(string name,string date,string cell)
 		os<<_name[_name.size()-1];
 		os<<" ";
 		os<<_date<<" "<<_cell<<" ";
-		os<<_email<<" "<<_make<<" "<<_model<<endl;
+		os<<_email<<" ";
+		for(int i=0;i<(int)_make.size()-1;i++)
+			os<<_make[i]<<"*";
+		os<<_make[_make.size()-1];
+		os<<" ";
+		for(int i=0;i<(int)_model.size()-1;i++)
+			os<<_model[i]<<"*";
+		os<<_model[_model.size()-1];
+		os<<endl;
 		os<<_new<<" "<<_lease<<" ";
 		if (_new==0)
 		{

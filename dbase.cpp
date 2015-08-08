@@ -19,6 +19,24 @@ dbase::dbase(string fileloc)
 {
 _fileloc=fileloc;
 }
+vector<string> dbase::producer(string s)
+{
+    vector<string> toReturn;
+    int lastloc=0; 
+        if (s[0]==' ')
+            s=s.substr(1);
+    
+    for(int i=0;i<(int)s.size();i++)
+    {
+        if (s[i]=='*')
+        {
+            toReturn.push_back(s.substr(lastloc,i-lastloc));        
+            lastloc=i+1;
+        }       
+    }
+    toReturn.push_back(s.substr(lastloc,s.size()-lastloc));
+    return toReturn;
+}
 void dbase::addUser(user newUser)
 {
     newUser.check();
@@ -138,9 +156,11 @@ void dbase::parse(string fileloc)
         infile>>name>>date>>cell>>email>>make>>model;
         user newUser(name,date,cell);
         newUser._email=email;
+        newUser._make=producer(make);
+
     //newUser._address=address;
-    newUser._make=make;
-    newUser._model=model;
+ 
+    newUser._model=producer(model);
     infile>>newTag>>leaseTag;
     if (!newTag)
     {   newUser._new=newTag;

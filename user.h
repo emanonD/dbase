@@ -17,7 +17,8 @@ public:
 	std::string displayString() const;
 	void dump(std::ostream& os) const;
 	//void generateCallHistory(string date,car newCar,string method,string comment);
-	string _date,_cell,_email,_make,_model,_exterior,_interior,_year,_msrp,_options,_price,_orderNumber;
+	string _date,_cell,_email,_exterior,_interior,_year,_msrp,_options,_price,_orderNumber;
+	//vector<string> _make;
 	int _down,_term,_miles,_dotd;
 	bool _new;
 	bool _lease;
@@ -27,7 +28,7 @@ public:
 	string _key;
 //	car _car;
 	//int _callHistoryNum;
-	vector<string> _name;
+	vector<string> _name,_make,_model;
 	//vector<string> _address;
 	//vector<callHistory> _callHistory;
 	//vector<string> _images;
