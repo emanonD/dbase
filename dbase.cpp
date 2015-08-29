@@ -148,7 +148,7 @@ void dbase::parse(string fileloc)
     string tag,name,date,cell,email,address,callBackDate,make,model,orderNumber;//,pic1,pic2,pic3;
     int newTag,leaseTag;
     string exterior,interior,year,msrp,options,price;
-    int down,term,miles,dotd;
+    int down,term,miles,dotd,monthly;
     infile>>tag;
     while (tag=="Another")
     {
@@ -184,9 +184,10 @@ void dbase::parse(string fileloc)
     {
         newUser._new=newTag;
         newUser._lease=leaseTag;
-        infile>>down>>term>>miles;
+        infile>>down>>term>>monthly>>miles;
         newUser._down=down;
         newUser._term=term;
+        newUser._monthly=monthly;
         newUser._miles=miles;
     }
     infile>>orderNumber;
@@ -218,8 +219,8 @@ vector<user> dbase::findDate(string Qdate)
     {
         user newUser=it->second;
         cout<<Qdate<<endl;
-        cout<<newUser._callBackDate;
-        if (newUser._callBackDate==Qdate)
+        cout<<newUser._date;
+        if ((newUser._date.substr(0,10)==Qdate)&&(newUser._new)&&(newUser._lease))
             toCall.push_back(newUser);
 
     }

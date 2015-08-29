@@ -53,15 +53,40 @@ user::user(string name,string date,string cell)
 	}*/
 	std::string user::displayString() const
 	{	string toDisplay;
-		toDisplay+=_cell+" ";
+		
 			for(int i=0;i<(int)_name.size()-1;i++)
 			toDisplay+=_name[i]+" ";
 
 		toDisplay+=_name[_name.size()-1];
 			toDisplay+=' ';
-			toDisplay+=_date+' ';
-		for(int i=0;i<(int)_make.size()-1;i++)
+			toDisplay+=_cell+" ";
+			
+		for(int i=0;i<(int)_make.size();i++)
 			toDisplay+=_make[i]+" ";
+
+		for(int i=0;i<(int)_model.size();i++)
+			toDisplay+=_model[i]+" ";
+		toDisplay+=_date.substr(0,10)+' ';
+		int year=atoi(_date.substr(0,4).c_str());
+		cout<<year<<endl;
+		int month=atoi(_date.substr(5,2).c_str());
+		int day=atoi(_date.substr(8,2).c_str());
+		int term=_term;
+		while (month+term>12)
+		{
+			year++;
+			term-=12;
+		}
+		month+=term;
+		string Result;          // string which will contain the result
+
+		 // stream used for the conversion
+
+		
+		toDisplay+=year+'.'+month+'.'+day;   
+		
+
+
 			//toDisplay+=(int)_callHistory.size();
 
 		return toDisplay;//forname+"  "+lastname+"  "+cell+"  "+ssn+" "+address+"  "+dob;
@@ -108,7 +133,7 @@ user::user(string name,string date,string cell)
 		}
 		else if(_lease==1)
 		{
-			os<<_down<<" "<<_term<<" "<<_miles<<" ";
+			os<<_down<<" "<<_term<<" "<<_monthly<<" "<<_miles<<" ";
 		}
 		else if(_lease==0)
 		{

@@ -19,7 +19,7 @@ public:
 	//void generateCallHistory(string date,car newCar,string method,string comment);
 	string _date,_cell,_email,_exterior,_interior,_year,_msrp,_options,_price,_orderNumber;
 	//vector<string> _make;
-	int _down,_term,_miles,_dotd;
+	int _down,_term,_miles,_dotd,_monthly;
 	bool _new;
 	bool _lease;
 	string _callBackDate;
